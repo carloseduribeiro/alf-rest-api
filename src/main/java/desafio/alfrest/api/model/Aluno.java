@@ -3,6 +3,7 @@ package desafio.alfrest.api.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity(name = "aluno")
 public class Aluno {
@@ -13,7 +14,7 @@ public class Aluno {
     @Column(nullable = false, length = 50)
     private String nome;
 
-    @Column
+    @Column(nullable = false)
     private float media;
 
 }

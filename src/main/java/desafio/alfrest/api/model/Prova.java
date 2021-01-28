@@ -10,7 +10,7 @@ public class Prova {
     @Id
     private Integer id;
 
-    @Column
+    @Column(nullable = false)
     private float nota;
 
     // private ArrayList<Questao> questoes;

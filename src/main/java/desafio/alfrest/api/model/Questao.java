@@ -15,10 +15,10 @@ public class Questao {
     @Column(nullable = false, length = 1)
     private String alternativa;
 
-    @Column
+    @Column(nullable = false)
     private Integer peso;
 
-    @Column
+    @Column(nullable = false)
     private boolean gabarito;
 
 }
