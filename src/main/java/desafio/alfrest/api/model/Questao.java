@@ -1,16 +1,17 @@
 package desafio.alfrest.api.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Questao {
 
     @Id
+    @GeneratedValue
     private Integer id;
 
-    //private Integer idProva;
+    @ManyToOne
+    @JoinColumn(name = "id_prova")
+    private Prova prova;
 
     @Column(nullable = false, length = 1)
     private String alternativa;
@@ -19,6 +20,6 @@ public class Questao {
     private Integer peso;
 
     @Column(nullable = false)
-    private boolean gabarito;
+    private Boolean gabarito;
 
 }

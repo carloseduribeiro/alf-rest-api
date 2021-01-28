@@ -1,18 +1,23 @@
 package desafio.alfrest.api.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Prova {
 
     @Id
+    @GeneratedValue
     private Integer id;
 
     @Column(nullable = false)
-    private float nota;
+    private Float nota;
 
-    // private ArrayList<Questao> questoes;
+    @ManyToOne
+    @JoinColumn(name = "id_aluno")
+    private Aluno aluno;
+
+    @OneToMany(mappedBy = "prova")
+    private List<Questao> questoes;
 
 }
