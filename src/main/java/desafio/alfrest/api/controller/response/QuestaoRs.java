@@ -8,6 +8,12 @@ public class QuestaoRs {
     private Integer peso;
     private Boolean gabarito;
 
+    // Contrutor para definir os valores padrão:
+    public QuestaoRs() {
+        this.setPeso(1);
+        this.setGabarito(false);
+    }
+
     // Getters | Setters
 
     public Integer getId() {

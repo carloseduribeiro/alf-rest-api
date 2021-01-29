@@ -6,6 +6,11 @@ public class ProvaRs {
     private Float nota;
     private Integer id_aluno;
 
+    // Contrutor:
+    public ProvaRs() {
+        this.setNota(0.0f); // define a nota padrão
+    }
+
     // Getters | Setters
 
     public Integer getId() {
