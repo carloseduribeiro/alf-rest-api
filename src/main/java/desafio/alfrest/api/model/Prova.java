@@ -1,32 +1,23 @@
 package desafio.alfrest.api.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Prova {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
     private Float nota;
 
-    @ManyToOne
-    @JoinColumn(name = "id_aluno")
-    private Aluno aluno;
+    @Column
+    private Integer id_aluno;
 
-    @OneToMany(mappedBy = "prova")
-    private List<Questao> questoes;
-
-
-    // Contrutor para estabelecer os valores padrão:
+    // Contrutor:
     public Prova() {
-        this.setNota(0.0f);
-        this.aluno = new Aluno();
-        this.questoes = new ArrayList<>();
+        this.setNota(0.0f); // define a nota padrão
     }
 
 
@@ -48,16 +39,11 @@ public class Prova {
         this.nota = nota;
     }
 
-    public Aluno getAluno() {
-        return aluno;
+    public Integer getId_aluno() {
+        return id_aluno;
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+    public void setId_aluno(Integer id_aluno) {
+        this.id_aluno = id_aluno;
     }
-
-    public List<Questao> getQuestoes() {
-        return questoes;
-    }
-
 }
