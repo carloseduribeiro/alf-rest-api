@@ -16,12 +16,6 @@ public class Aluno {
     @Column(nullable = false)
     private Float media;
 
-    // Construtor
-    public Aluno() {
-        this.setMedia(0.0f); // Valor padrão da media
-    }
-
-
     // Getters | Setters
 
     public Integer getId() {

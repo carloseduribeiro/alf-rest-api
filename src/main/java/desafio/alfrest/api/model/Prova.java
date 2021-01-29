@@ -15,11 +15,6 @@ public class Prova {
     @Column
     private Integer id_aluno;
 
-    // Contrutor:
-    public Prova() {
-        this.setNota(0.0f); // define a nota padrão
-    }
-
 
     // Getters | Setters
 

@@ -22,13 +22,6 @@ public class Questao {
     private Boolean gabarito;
 
 
-    // Contrutor para definir os valores padrão:
-    public Questao() {
-        this.setPeso(1);
-        this.setGabarito(false);
-    }
-
-
     // Getters | Setters
 
     public Integer getId() {
