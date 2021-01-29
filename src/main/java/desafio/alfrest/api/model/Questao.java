@@ -22,4 +22,54 @@ public class Questao {
     @Column(nullable = false)
     private Boolean gabarito;
 
+
+    // Contrutor para definir os valores padrão:
+    public Questao() {
+        this.setPeso(1);
+        this.prova = new Prova();
+    }
+
+
+    // Getters | Setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Prova getProva() {
+        return prova;
+    }
+
+    public void setProva(Prova prova) {
+        this.prova = prova;
+    }
+
+    public String getAlternativa() {
+        return alternativa;
+    }
+
+    public void setAlternativa(String alternativa) {
+        this.alternativa = alternativa;
+    }
+
+    public Integer getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Integer peso) {
+        this.peso = peso;
+    }
+
+    public Boolean getGabarito() {
+        return gabarito;
+    }
+
+    public void setGabarito(Boolean gabarito) {
+        this.gabarito = gabarito;
+    }
+
 }
