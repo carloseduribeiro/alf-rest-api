@@ -1,10 +1,22 @@
 package desafio.alfrest.api.controller.DTO;
 
+import desafio.alfrest.api.model.Prova;
+
 public class ProvaRs {
 
     private Integer id;
     private Float nota;
     private Integer id_aluno;
+
+    // Conversor:
+    // Converte uma entidade Prova para uma representação ProvaRs:
+    public static ProvaRs converter(Prova a) {
+        var prova = new ProvaRs();
+        prova.setId(a.getId());
+        prova.setId_aluno(a.getId_aluno());
+        prova.setNota(a.getNota());
+        return prova;
+    }
 
     // Contrutor:
     public ProvaRs() {

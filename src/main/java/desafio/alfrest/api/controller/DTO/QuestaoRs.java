@@ -1,5 +1,7 @@
 package desafio.alfrest.api.controller.DTO;
 
+import desafio.alfrest.api.model.Questao;
+
 public class QuestaoRs {
 
     private Integer id;
@@ -7,6 +9,17 @@ public class QuestaoRs {
     private String alternativa;
     private Integer peso;
     private Boolean gabarito;
+
+    // Conversor:
+    // Converte uma entidade Questao para uma representação QuestaoRs.
+    public static QuestaoRs converter(Questao q) {
+         var questao = new QuestaoRs();
+         questao.setId(q.getId());
+         questao.setAlternativa(q.getAlternativa());
+         questao.setPeso(q.getPeso());
+         questao.setGabarito(q.getGabarito());
+         return questao;
+    }
 
     // Contrutor para definir os valores padrão:
     public QuestaoRs() {
