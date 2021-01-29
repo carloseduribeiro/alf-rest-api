@@ -6,12 +6,11 @@ import javax.persistence.*;
 public class Questao {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_prova")
-    private Prova prova;
+    @Column(nullable = false)
+    private Integer id_prova;
 
     @Column(nullable = false, length = 1)
     private String alternativa;
@@ -26,7 +25,7 @@ public class Questao {
     // Contrutor para definir os valores padrão:
     public Questao() {
         this.setPeso(1);
-        this.prova = new Prova();
+        this.setGabarito(false);
     }
 
 
@@ -38,14 +37,6 @@ public class Questao {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Prova getProva() {
-        return prova;
-    }
-
-    public void setProva(Prova prova) {
-        this.prova = prova;
     }
 
     public String getAlternativa() {
@@ -72,4 +63,11 @@ public class Questao {
         this.gabarito = gabarito;
     }
 
+    public Integer getId_prova() {
+        return id_prova;
+    }
+
+    public void setId_prova(Integer id_prova) {
+        this.id_prova = id_prova;
+    }
 }
