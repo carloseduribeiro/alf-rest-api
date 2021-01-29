@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class AlunoController {
 
     @Autowired
     private AlunosRepository repository;
 
     // Faz uma consulta pelo id do aluno:
-    @GetMapping(path = "/api/aluno/{id}")
+    @GetMapping(path = "/aluno/{id}")
     public ResponseEntity consultar(@PathVariable("id") Integer id) {
         // Faz e retorna a consulta:
         return this.repository.findById(id)
@@ -26,14 +27,14 @@ public class AlunoController {
     }
 
     // Cadastra um novo aluno:
-    @PostMapping(path = "/api/aluno")
+    @PostMapping(path = "/aluno")
     public Aluno cadastrar(@RequestBody Aluno aluno) {
         return this.repository.save(aluno); // Cadastra o aluno recebido no RequestBody e retorna
     }
 
     // Consulta e retorna os alunos:
     // /api/alunos?provas=true  imprime com a lista de provas.
-    @GetMapping(path = "/api/alunos")
+    @GetMapping(path = "/alunos")
     public List<Aluno> consultarAlunos(@RequestParam(value = "provas", required = false, defaultValue = "false") Boolean val) {
         if (!val) {
             return this.repository.findAll();
