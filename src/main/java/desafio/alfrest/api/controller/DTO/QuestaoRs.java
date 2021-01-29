@@ -1,4 +1,4 @@
-package desafio.alfrest.api.controller.response;
+package desafio.alfrest.api.controller.DTO;
 
 public class QuestaoRs {
 
