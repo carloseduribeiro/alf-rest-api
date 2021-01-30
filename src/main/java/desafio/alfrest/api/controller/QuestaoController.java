@@ -34,7 +34,7 @@ public class QuestaoController {
     // Consulta e retorna as questôes pelo id da prova:
     @GetMapping(path = "/questao/prova/{id_prova}")
     public List<QuestaoRs> consultarQuestaoIdProva(@PathVariable("id_prova") Integer id_prova) {
-        var questoes = this.repository.findByIdProva(id_prova);
+        var questoes = this.repository.findQuestoesByIdProva(id_prova);
         return questoes
                 .stream().map(questao -> QuestaoRs.converter(questao))
                 .collect(Collectors.toList());
@@ -48,7 +48,7 @@ public class QuestaoController {
         var q = new Questao();
         q.setId(null);
         q.setAlternativa(questao.getAlternativa());
-        q.setPeso(questao.getPeso());
+        q.setPeso(null);
         q.setGabarito(false);
 
         // Define id_prova == 0 se ele não for informado no RequestBody
@@ -84,7 +84,7 @@ public class QuestaoController {
             questao.setId(null);
             questao.setId_prova(q.getId_prova());
             questao.setAlternativa(q.getAlternativa());
-            questao.setPeso(q.getPeso());
+            questao.setPeso(null);
             questao.setGabarito(false);
             result.add(QuestaoRs.converter(this.repository.save(questao)));
         }
