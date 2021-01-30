@@ -21,7 +21,7 @@ public interface QuestaoRepository extends JpaRepository<Questao, Integer> {
 
     // Retorna todas as respostas de uma prova pelo id:
     @Query(value = "SELECT * FROM questao q WHERE q.id_prova = :idprova AND q.gabarito = false", nativeQuery = true)
-    List<Questao> findByIdProva(@Param("idprova") Integer id);
+    List<Questao> findQuestoesByIdProva(@Param("idprova") Integer id);
 
     // Retorna o gabarito de uma prova pelo id
     @Query(value = "SELECT * FROM questao q WHERE q.id_prova = :idprova AND q.gabarito = true", nativeQuery = true)
