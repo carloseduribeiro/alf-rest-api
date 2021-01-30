@@ -1,6 +1,9 @@
 package desafio.alfrest.api.controller.DTO;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import desafio.alfrest.api.model.Prova;
+
+import java.util.List;
 
 public class ProvaRs {
 
@@ -8,13 +11,16 @@ public class ProvaRs {
     private Float nota;
     private Integer id_aluno;
 
+    // Armazena a lista de questões da prova:
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    List<QuestaoRs> questoes;
+
     // Conversor:
     // Converte uma entidade Prova para uma representação ProvaRs:
     public static ProvaRs converter(Prova a) {
         var prova = new ProvaRs();
         prova.setId(a.getId());
         prova.setId_aluno(a.getId_aluno());
-        prova.setNota(a.getNota());
         return prova;
     }
 
@@ -47,5 +53,13 @@ public class ProvaRs {
 
     public void setId_aluno(Integer id_aluno) {
         this.id_aluno = id_aluno;
+    }
+
+    public List<QuestaoRs> getQuestoes() {
+        return questoes;
+    }
+
+    public void setQuestoes(List<QuestaoRs> questoes) {
+        this.questoes = questoes;
     }
 }
