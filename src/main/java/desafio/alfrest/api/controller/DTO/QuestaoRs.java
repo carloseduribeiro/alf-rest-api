@@ -1,5 +1,6 @@
 package desafio.alfrest.api.controller.DTO;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import desafio.alfrest.api.model.Questao;
 
 public class QuestaoRs {
@@ -7,6 +8,7 @@ public class QuestaoRs {
     private Integer id;
     private Integer id_prova;
     private String alternativa;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer peso;
     private Boolean gabarito;
 
