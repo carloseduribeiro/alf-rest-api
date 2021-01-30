@@ -12,7 +12,7 @@ public class Prova {
     @Column(nullable = false)
     private Float nota;
 
-    @Column
+    @Column(nullable = false)
     private Integer id_aluno;
 
 
