@@ -18,6 +18,7 @@ public class QuestaoRs {
          questao.setAlternativa(q.getAlternativa());
          questao.setPeso(q.getPeso());
          questao.setGabarito(q.getGabarito());
+         questao.setId_prova(q.getId_prova());
          return questao;
     }
 
