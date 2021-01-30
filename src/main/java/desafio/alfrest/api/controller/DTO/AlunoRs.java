@@ -1,12 +1,19 @@
 package desafio.alfrest.api.controller.DTO;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import desafio.alfrest.api.model.Aluno;
+
+import java.util.List;
 
 public class AlunoRs {
 
     private Integer id;
     private String nome;
     private Float media;
+
+    // Armazena a lista de provas do aluno:
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<ProvaRs> provas;
 
     // Conversor:
     // Converte uma entidade Aluno para a representação PessoaRs.
@@ -49,4 +56,11 @@ public class AlunoRs {
         this.media = media;
     }
 
+    public List<ProvaRs> getProvas() {
+        return provas;
+    }
+
+    public void setProvas(List<ProvaRs> provas) {
+        this.provas = provas;
+    }
 }
