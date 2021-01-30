@@ -1,7 +1,8 @@
 package desafio.alfrest.api.controller;
 
 import desafio.alfrest.api.controller.DTO.AlunoRq;
-import desafio.alfrest.api.controller.repository.AlunosRepository;
+import desafio.alfrest.api.controller.DTO.ProvaRs;
+import desafio.alfrest.api.controller.repository.AlunoRepository;
 import desafio.alfrest.api.controller.repository.ProvaRepository;
 import desafio.alfrest.api.controller.DTO.AlunoRs;
 import desafio.alfrest.api.model.Aluno;
@@ -17,28 +18,72 @@ import java.util.stream.Collectors;
 public class AlunoController {
 
     @Autowired
-    private AlunosRepository repository;
+    private AlunoRepository repository;
+
+    @Autowired
+    ProvaRepository provaRepository;
 
     // Consulta e retorna os alunos:
     // /api/alunos?provas=true  imprime com a lista de provas.
-    @GetMapping(path = "/alunos")
+    @GetMapping(path = "/aluno")
     public List<AlunoRs> consultarAlunos(@RequestParam(value = "provas", required = false, defaultValue = "false") Boolean val) {
         var alunos = this.repository.findAll();
+        List<AlunoRs> result = new ArrayList<>();
+
         if (!val) {
-            return alunos
+            // caso a propriedade não seja informada ou seja igual a false:
+            // Retorna uma lista das alunos cadastradas no banco.
+            result = alunos
                     .stream().map(aluno -> AlunoRs.converter(aluno))
                     .collect(Collectors.toList());
         } else {
-            // retorna uma lista dos alunos junto a lista de suas provas:
-            return new ArrayList<>(null);
+
+            // Cria a lista dos alunos cadastrados no banco:
+            result = alunos
+                    .stream().map(aluno -> AlunoRs.converter(aluno))
+                    .collect(Collectors.toList());
+
+            // Percorre e adiciona a lista de provas ao resultado:
+            for( AlunoRs aluno : result ) {
+                List<ProvaRs> provas = new ArrayList<>();   // armazena a lista das questões.
+
+                // Consulta e armazena a lista das questões:
+                provas = provaRepository.findAll()
+                        .stream()
+                        .map(prova -> ProvaRs.converter(prova))
+                        .collect(Collectors.toList());
+                // Atribui a lista de questão ao objeto prova:
+                aluno.setProvas(provas);
+            }
+
         }
+        // Retorna o resultado:
+        return result;
     }
 
     // Faz uma consulta pelo id do aluno:
     @GetMapping(path = "/aluno/{id}")
-    public AlunoRs consultar(@PathVariable("id") Integer id) {
+    public AlunoRs consultar(
+            @PathVariable("id") Integer id,
+            @RequestParam(value = "provas", required = false, defaultValue = "false") Boolean val) {
+
         var aluno = this.repository.getOne(id);
-        return AlunoRs.converter(aluno);
+        AlunoRs result = AlunoRs.converter(aluno);
+
+        if ( val) {
+            List<ProvaRs> provas = new ArrayList<>();   // armazena a lista das provas.
+
+            // Consulta e armazena a lista das provas:
+
+            provas = provaRepository.findProvaByIdAluno(aluno.getId())
+                    .stream().map(prova -> ProvaRs.converter(prova))
+                    .collect(Collectors.toList());
+
+            result.setProvas(provas);
+        }
+
+        // Retorna o resultado:
+        return result;
     }
 
     // Cadastra um novo aluno:
