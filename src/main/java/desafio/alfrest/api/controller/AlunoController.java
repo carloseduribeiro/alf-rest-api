@@ -92,7 +92,58 @@ public class AlunoController {
         var a = new Aluno();
         a.setNome(aluno.getNome());
         a.setMedia(aluno.getMedia());
+        a.setSituacao(false);
         return AlunoRs.converter(this.repository.save(a));
     }
+
+    // Verifica e exibe a situação de um aluno:
+    @GetMapping(path = "/aluno/{id}/situacao")
+    public AlunoRs consultaSituacao(@PathVariable("id") Integer id) {
+        var aluno = this.repository.getOne(id);
+        AlunoRs result = AlunoRs.converter(aluno);
+
+        List<String> respostas = this.provaRepository.findRespostasByIdProva(id);
+        List<String> gabarito = this.provaRepository.findGabaritoByIdProva(id);
+        List<Float> pesos = this.provaRepository.findQuestaoPesoByIdProva(id);
+
+        Float media = 0.0f;
+
+        /* Se o número de questões respondidas forem menor que o numero de questões gabarito
+        * as não respondidas serão consideradas erradas para calcular a nota. */
+        if (respostas.size() <= gabarito.size()) {
+            if (respostas.size() <= gabarito.size())
+                for (int i = 0; i < (respostas.size()-gabarito.size()); i++ )
+                    respostas.add(null);
+
+            media = ProvaRs.calculaNota(respostas, gabarito, pesos);
+        } else {
+            result.setSituacao_aluno("Não foi possível verificar a situação! Verifique as se o gabarito possui todas as questões cadastradas.");
+        }
+
+        // Atribui a média calculada:
+        result.setMedia(media);;
+
+        // Se a média for maior que
+        if (media >= 7) {
+            result.setSituacao(true);
+            result.setSituacao_aluno("APROVADO");
+        } else {
+            result.setSituacao(false);
+            result.setSituacao_aluno("REPROVADO");
+        }
+
+        // Retorna o resultado:
+        return result;
+    }
+
+    // Consulta e retorna uma lista dos alunos aprovados:
+    @PostMapping(path = "/aluno/aprovados")
+    public List<AlunoRs> consultaLunosAprovados() {
+        var alunos = this.repository.findAlunosAprovados();
+        return alunos
+                .stream().map(aluno -> AlunoRs.converter(aluno))
+                .collect(Collectors.toList());
+    }
+
 
 }
