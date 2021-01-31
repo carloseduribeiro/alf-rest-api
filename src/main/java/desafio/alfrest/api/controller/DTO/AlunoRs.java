@@ -1,5 +1,6 @@
 package desafio.alfrest.api.controller.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import desafio.alfrest.api.model.Aluno;
 
@@ -15,6 +16,11 @@ public class AlunoRs {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<ProvaRs> provas;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Boolean situacao;
+
+    private String situacao_aluno;
+
     // Conversor:
     // Converte uma entidade Aluno para a representação PessoaRs.
     public static AlunoRs converter(Aluno a) {
@@ -22,6 +28,14 @@ public class AlunoRs {
         aluno.setId(a.getId());
         aluno.setNome(a.getNome());
         aluno.setMedia(a.getMedia());
+        aluno.setSituacao(a.getSituacao());
+
+        if (a.getSituacao()) {
+            aluno.setSituacao_aluno("APROVADO");
+        } else {
+            aluno.setSituacao_aluno("REPROVADO");
+        }
+
         return aluno;
     }
 
@@ -62,5 +76,21 @@ public class AlunoRs {
 
     public void setProvas(List<ProvaRs> provas) {
         this.provas = provas;
+    }
+
+    public Boolean getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Boolean situacao) {
+        this.situacao = situacao;
+    }
+
+    public String getSituacao_aluno() {
+        return situacao_aluno;
+    }
+
+    public void setSituacao_aluno(String situacao_aluno) {
+        this.situacao_aluno = situacao_aluno;
     }
 }

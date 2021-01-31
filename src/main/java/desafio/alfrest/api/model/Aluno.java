@@ -1,7 +1,6 @@
 package desafio.alfrest.api.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity(name = "aluno")
 public class Aluno {
@@ -15,6 +14,9 @@ public class Aluno {
 
     @Column(nullable = false)
     private Float media;
+
+    @Column
+    private Boolean situacao;
 
     // Getters | Setters
 
@@ -42,4 +44,11 @@ public class Aluno {
         this.media = media;
     }
 
+    public Boolean getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Boolean situacao) {
+        this.situacao = situacao;
+    }
 }
