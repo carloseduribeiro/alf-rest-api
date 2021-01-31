@@ -62,4 +62,19 @@ public class ProvaRs {
     public void setQuestoes(List<QuestaoRs> questoes) {
         this.questoes = questoes;
     }
+
+    // Calcula a media:
+    public static Float calculaNota(List<String> respostas, List<String> gabarito, List<Float> pesos) {
+        Float media = 0.0f;
+
+        // Calcula a media do aluno:
+        for ( int i = 0; i < respostas.size(); i++ ) {
+            // Se as respostas forem iguais:
+            if (respostas.get(i) == (gabarito.get(i))) {
+                media += pesos.get(i) * 1;
+            }
+        }
+
+        return media;
+    }
 }
