@@ -97,7 +97,7 @@ public class AlunoController {
     }
 
     // Verifica e exibe a situação de um aluno:
-    @GetMapping(path = "/aluno/{id}/situacao")
+    @PostMapping(path = "/aluno/{id}/situacao")
     public AlunoRs consultaSituacao(@PathVariable("id") Integer id) {
         var aluno = this.repository.getOne(id);
         AlunoRs result = AlunoRs.converter(aluno);
@@ -137,7 +137,7 @@ public class AlunoController {
     }
 
     // Consulta e retorna uma lista dos alunos aprovados:
-    @PostMapping(path = "/aluno/aprovados")
+    @GetMapping(path = "/aluno/aprovados")
     public List<AlunoRs> consultaLunosAprovados() {
         var alunos = this.repository.findAlunosAprovados();
         return alunos
