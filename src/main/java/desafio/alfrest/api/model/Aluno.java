@@ -8,7 +8,7 @@ import java.util.List;
 public class Aluno {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, length = 50)
@@ -17,16 +17,19 @@ public class Aluno {
     @Column(nullable = false)
     private Float media;
 
+    @Column
+    private Boolean status; // se for null as notas ainda não foram calculadas.
+
     // Um aluno contem uma lista de Provas:
     @OneToMany(mappedBy = "aluno")
     private List<Prova> provas;
 
 
-    // Construtor
+    // Construtores:
+    public Aluno() {}
 
-    public Aluno() {
-        this.setMedia(0.0f);
-        this.provas = new ArrayList<>();
+    public Aluno(String nome) {
+        this.setNome(nome);
     }
 
 
