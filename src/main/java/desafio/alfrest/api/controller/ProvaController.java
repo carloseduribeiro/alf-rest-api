@@ -1,6 +1,6 @@
 package desafio.alfrest.api.controller;
 
-import desafio.alfrest.api.controller.repository.ProvaRepository;
+import desafio.alfrest.api.repository.ProvaRepository;
 import desafio.alfrest.api.model.Prova;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

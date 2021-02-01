@@ -1,4 +1,4 @@
-package desafio.alfrest.api.controller.repository;
+package desafio.alfrest.api.repository;
 
 import desafio.alfrest.api.model.Questao;
 import org.springframework.data.jpa.repository.JpaRepository;
