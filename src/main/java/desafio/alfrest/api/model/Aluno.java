@@ -1,7 +1,6 @@
 package desafio.alfrest.api.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "aluno")
@@ -15,7 +14,7 @@ public class Aluno {
     private String nome;
 
     @Column(nullable = false)
-    private Float media;
+    private Float media = 0f;
 
     @Column
     private Boolean status; // se for null as notas ainda não foram calculadas.
@@ -57,6 +56,14 @@ public class Aluno {
 
     public void setMedia(Float media) {
         this.media = media;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public List<Prova> getProvas() {
