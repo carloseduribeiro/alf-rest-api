@@ -1,5 +1,7 @@
 package desafio.alfrest.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Questao {
     private Integer id;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id_prova")
     private Prova prova;
 
