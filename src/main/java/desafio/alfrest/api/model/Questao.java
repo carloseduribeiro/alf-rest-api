@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Questao {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

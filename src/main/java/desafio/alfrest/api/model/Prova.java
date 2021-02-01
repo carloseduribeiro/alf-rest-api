@@ -10,7 +10,7 @@ import java.util.List;
 public class Prova {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
