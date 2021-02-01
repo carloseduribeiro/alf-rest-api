@@ -1,5 +1,7 @@
 package desafio.alfrest.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Prova {
     private Float nota;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id_aluno")
     private Aluno aluno;
 
