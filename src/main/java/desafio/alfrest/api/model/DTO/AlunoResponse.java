@@ -69,7 +69,7 @@ public class AlunoResponse {
     }
 
     public void setProvas(List<Prova> provas) {
-        this.provas = provas;
+        this.provas = provas.size() > 0 ? provas : null;
     }
 
     public Boolean getStatus() {
