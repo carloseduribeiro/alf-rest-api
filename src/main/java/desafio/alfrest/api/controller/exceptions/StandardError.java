@@ -2,6 +2,7 @@ package desafio.alfrest.api.controller.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 // Armazena os dados do erro quando uma exception é lançada.
 public class StandardError implements Serializable {
@@ -10,17 +11,20 @@ public class StandardError implements Serializable {
     {
         "timestamp": "2021-02-01T04:48:03.239+00:00",
         "status": 404,
-        "error": "Not Found",
+        "path": "/api/alunos",
         "message": "",
-        "path": "/api/alunos"
+        "errors": [
+            "Not Found"
+        ]
     }
     */
 
     private Instant timestamp;
     private Integer status;
-    private String error;
-    private String message;
     private String path;
+    private String message;
+    private List<String> errors;
+
 
     public StandardError() {}
 
@@ -40,12 +44,12 @@ public class StandardError implements Serializable {
         this.status = status;
     }
 
-    public String getError() {
-        return error;
+    public List<String> getErrors() {
+        return errors;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setErrors(List<String> error) {
+        this.errors = error;
     }
 
     public String getMessage() {
