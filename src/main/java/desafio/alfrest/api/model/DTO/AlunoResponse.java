@@ -68,8 +68,8 @@ public class AlunoResponse {
         return provas;
     }
 
-    public void setProvas(List<Prova> provas) {
-        this.provas = provas.size() > 0 ? provas : null;
+    public void setProvas(List<Prova> lista_provas) {
+        this.provas = lista_provas;
     }
 
     public Boolean getStatus() {
